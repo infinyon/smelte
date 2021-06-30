@@ -8,7 +8,9 @@
   import Icon from "../Icon";
   import Ripple from "../Ripple";
 
+  export let name = "";
   export let value = "";
+  export let required = false;
   export let label = "";
   export let color = "primary";
   export let checked = false;
@@ -41,14 +43,6 @@
       check();
     }
   }
-  const dispatch = createEventDispatcher();
-
-  function check() {
-    if (disabled) return;
-
-    checked = !checked;
-    dispatch("change", checked);
-  }
 
   $: rippleColor = checked && !disabled ? color : "gray";
 
@@ -61,9 +55,9 @@
 </script>
 
 <div class={$$props.class}>
-  <div class={c} on:click={check}>
-    <input bind:checked class="hidden" type="checkbox" on:change {value} />
+  <div class={c}>
     <div class="relative w-auto h-auto z-0">
+      <input bind:checked class="absolute left-0 opacity-0" style="width:40px;height:40px;" type="checkbox" {name} {value} {required} />
       <Ripple color={rippleColor}>
         {#if checked}
           <Icon

@@ -87,11 +87,6 @@ button:focus, input:focus, li:focus, div:focus, textarea:focus {
   @apply underline text-blue-600;
 }
 
-html {
-  font-family: "Roboto", sans-serif;
-}
-
-
 input[type='number'] {
     -moz-appearance:textfield;
 }

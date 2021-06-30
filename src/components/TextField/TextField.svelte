@@ -22,7 +22,6 @@
   export let rows = 5;
   export let select = false;
   export let dense = false;
-  export let autocomplete = false;
   export let noUnderline = false;
   export let appendReverse = false;
   export let prependReverse = false;
@@ -89,7 +88,7 @@
       .add('pt-4 pb-1', dense && !outlined)
       .remove('bg-gray-100', disabled)
       .add('bg-gray-50', disabled)
-      .add('cursor-pointer', select && !autocomplete)
+      .add('cursor-pointer', select)
       .add($$props.class)
       .remove(remove)
       .replace(replace)
@@ -97,7 +96,7 @@
       .get();
 
   $: wClasses = ccb.flush()
-      .add('select', select || autocomplete)
+      .add('select', select)
       .add('dense', dense && !outlined)
       .remove('mb-6 mt-2', dense && !outlined)
       .add('mb-4 mt-1', dense)
@@ -120,7 +119,6 @@
     'textarea',
     'rows',
     'select',
-    'autocomplete',
     'noUnderline',
     'appendReverse',
     'prependReverse',
@@ -151,7 +149,7 @@
   </slot>
   {/if}
 
-  {#if (!textarea && !select) || autocomplete}
+  {#if (!textarea && !select)}
     <input
       aria-label={label}
       class={iClasses}
@@ -188,7 +186,7 @@
       on:focus={toggleFocused}
       on:blur={toggleFocused}
       placeholder={!value ? placeholder : ""} />
-  {:else if select && !autocomplete}
+  {:else if select}
     <input
       readonly
       class="{iClasses}"
