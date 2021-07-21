@@ -102,3 +102,5 @@ module.exports = (config = {}) => {
 
   return pcss;
 };
+
+module.exports.postcssPlugins = plugins;
